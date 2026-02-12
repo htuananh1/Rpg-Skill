@@ -4,6 +4,21 @@
     "texture_data": {
         "rpg_skill_tome": {
             "textures": "textures/items/book_written"
+        },
+        "rpg_menu_compass": {
+            "textures": "textures/items/compass_item"
+        },
+        "rpg_admin_wand": {
+            "textures": "textures/items/blaze_rod"
+        },
+        "rpg_quest_journal": {
+            "textures": "textures/items/book_portfolio"
+        },
+        "rpg_coin_pouch": {
+            "textures": "textures/items/rabbit_hide"
+        },
+        "rpg_crafting_guide": {
+            "textures": "textures/items/book_normal"
         }
     }
 }

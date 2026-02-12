@@ -2,29 +2,26 @@
     "format_version": "1.20.0",
     "minecraft:recipe_shaped": {
         "description": {
-            "identifier": "rpgskills:skill_tome_recipe"
+            "identifier": "rpgskills:quest_journal_recipe"
         },
         "tags": [
             "crafting_table"
         ],
         "pattern": [
-            "LGL",
-            "GBG",
-            "LGL"
+            " P ",
+            "PBP",
+            " P "
         ],
         "key": {
-            "L": {
-                "item": "minecraft:leather"
-            },
-            "G": {
-                "item": "minecraft:gold_ingot"
+            "P": {
+                "item": "minecraft:paper"
             },
             "B": {
                 "item": "minecraft:book"
             }
         },
         "result": {
-            "item": "rpgskills:skill_tome",
+            "item": "rpgskills:quest_journal",
             "count": 1
         }
     }

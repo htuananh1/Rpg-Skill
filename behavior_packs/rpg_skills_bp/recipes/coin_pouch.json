@@ -2,29 +2,26 @@
     "format_version": "1.20.0",
     "minecraft:recipe_shaped": {
         "description": {
-            "identifier": "rpgskills:skill_tome_recipe"
+            "identifier": "rpgskills:coin_pouch_recipe"
         },
         "tags": [
             "crafting_table"
         ],
         "pattern": [
-            "LGL",
-            "GBG",
-            "LGL"
+            "LLL",
+            "LSL",
+            "LLL"
         ],
         "key": {
             "L": {
                 "item": "minecraft:leather"
             },
-            "G": {
-                "item": "minecraft:gold_ingot"
-            },
-            "B": {
-                "item": "minecraft:book"
+            "S": {
+                "item": "minecraft:string"
             }
         },
         "result": {
-            "item": "rpgskills:skill_tome",
+            "item": "rpgskills:coin_pouch",
             "count": 1
         }
     }

@@ -2,17 +2,17 @@
     "format_version": "1.20.0",
     "minecraft:item": {
         "description": {
-            "identifier": "rpgskills:skill_tome",
+            "identifier": "rpgskills:crafting_guide",
             "menu_category": {
                 "category": "equipment"
             }
         },
         "components": {
             "minecraft:display_name": {
-                "value": "item.rpgskills:skill_tome.name"
+                "value": "item.rpgskills:crafting_guide.name"
             },
             "minecraft:icon": {
-                "texture": "rpg_skill_tome"
+                "texture": "rpg_crafting_guide"
             },
             "minecraft:stack_size": 1,
             "minecraft:hand_equipped": true,

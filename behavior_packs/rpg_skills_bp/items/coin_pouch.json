@@ -2,19 +2,19 @@
     "format_version": "1.20.0",
     "minecraft:item": {
         "description": {
-            "identifier": "rpgskills:skill_tome",
+            "identifier": "rpgskills:coin_pouch",
             "menu_category": {
-                "category": "equipment"
+                "category": "items"
             }
         },
         "components": {
             "minecraft:display_name": {
-                "value": "item.rpgskills:skill_tome.name"
+                "value": "item.rpgskills:coin_pouch.name"
             },
             "minecraft:icon": {
-                "texture": "rpg_skill_tome"
+                "texture": "rpg_coin_pouch"
             },
-            "minecraft:stack_size": 1,
+            "minecraft:stack_size": 64,
             "minecraft:hand_equipped": true,
             "minecraft:use_animation": "brush",
             "minecraft:use_modifiers": {

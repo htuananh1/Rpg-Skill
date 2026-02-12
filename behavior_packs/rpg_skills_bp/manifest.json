@@ -1,0 +1,30 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "RPG Skills Addon - Behavior Pack",
+        "name": "RPG Skills BP",
+        "uuid": "7a3b4c5d-1e2f-4a5b-9c8d-0e1f2a3b4c5d",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 20, 0]
+    },
+    "modules": [
+        {
+            "description": "Scripting Module",
+            "type": "script",
+            "language": "javascript",
+            "uuid": "8b4c5d6e-2f3a-4b5c-0d1e-1f2a3b4c5d6e",
+            "version": [1, 0, 0],
+            "entry": "scripts/main.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.10.0"
+        },
+        {
+            "module_name": "@minecraft/server-ui",
+            "version": "1.2.0"
+        }
+    ]
+}

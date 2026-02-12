@@ -1,0 +1,31 @@
+item.rpg:skill_tome.name=§6Skill Tome§r
+rpg.menu.title=§l§0RPG SKILLS§r
+rpg.menu.overview=Overview
+rpg.menu.skills=Skills
+rpg.menu.perks=Perks
+rpg.menu.settings=Settings
+rpg.menu.close=Close
+
+rpg.skill.mining=Mining
+rpg.skill.woodcutting=Woodcutting
+rpg.skill.farming=Farming
+rpg.skill.combat=Combat
+rpg.skill.archery=Archery
+rpg.skill.fishing=Fishing
+rpg.skill.alchemy=Alchemy / Enchanting
+rpg.skill.agility=Agility
+rpg.skill.defense=Defense
+
+rpg.stat.level=Level: %s
+rpg.stat.xp=XP: %s / %s
+rpg.stat.mana=Mana: %s / %s
+rpg.stat.global_level=Global Level: %s
+
+rpg.notification.level_up=§e[RPG]§a Your %s level is now %s!
+rpg.notification.global_level_up=§e[RPG]§6 Global Level Up! You are now level %s!
+rpg.notification.xp_gain=§7+%s %s XP
+
+rpg.ui.toggle_particles=Toggle Particles: %s
+rpg.ui.toggle_notifications=Toggle Notifications: %s
+rpg.ui.on=ON
+rpg.ui.off=OFF

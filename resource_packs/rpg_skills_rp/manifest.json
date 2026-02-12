@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "RPG Skills Addon - Resource Pack",
+        "name": "RPG Skills RP",
+        "uuid": "9c5d6e7f-3a4b-5c6d-1e2f-2a3b4c5d6e7f",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 20, 0]
+    },
+    "modules": [
+        {
+            "description": "Resource Pack Module",
+            "type": "resources",
+            "uuid": "0d1e2f3a-4b5c-6d7e-8f9a-3b4c5d6e7f8a",
+            "version": [1, 0, 0]
+        }
+    ]
+}

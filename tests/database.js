@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { world } from "./mock_minecraft_server.js";
 import { CONFIG, SKILLS } from "./config.js";
 
 const DB_KEY = "rpg_player_data";

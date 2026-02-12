@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "imports": {
+    "@minecraft/server": "./mock_minecraft_server.js"
+  }
+}

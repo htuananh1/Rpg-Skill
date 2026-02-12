@@ -1,4 +1,4 @@
-import { world, system, MolangVariableMap } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import { Database } from "../../database.js";
 
 export function handleMining(player, block) {

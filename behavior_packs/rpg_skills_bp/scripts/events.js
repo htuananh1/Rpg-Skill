@@ -1,6 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { XpSystem } from "./systems/xp.js";
-import { SKILLS, CONFIG } from "./config.js";
+import { SKILLS } from "./config.js";
 import { Database } from "./database.js";
 import { openMainMenu } from "./ui/menu.js";
 import { openQuestsMenu } from "./ui/quests_ui.js";
@@ -11,7 +11,6 @@ import { StatsSystem } from "./systems/stats.js";
 import { handleMining } from "./systems/skills/mining.js";
 import { handleWoodcutting } from "./systems/skills/woodcutting.js";
 import { handleFarming } from "./systems/skills/farming.js";
-import { handleCombat } from "./systems/skills/combat.js";
 
 export function registerEvents() {
     // Block Breaking

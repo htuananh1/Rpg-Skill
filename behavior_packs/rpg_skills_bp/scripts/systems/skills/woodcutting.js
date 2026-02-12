@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import { Database } from "../../database.js";
 import { SKILLS } from "../../config.js";
 import { XpSystem } from "../xp.js";

@@ -1,6 +1,5 @@
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 import { Database } from "../database.js";
-import { Router } from "./router.js";
 import { world } from "@minecraft/server";
 import { CONFIG, SKILLS } from "../config.js";
 import { XpSystem } from "../systems/xp.js";

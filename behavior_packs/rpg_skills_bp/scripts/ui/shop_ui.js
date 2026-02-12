@@ -2,7 +2,6 @@ import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
 import { Database } from "../database.js";
 import { Router } from "./router.js";
 import { SHOP_ITEMS } from "../config.js";
-import { system } from "@minecraft/server";
 
 const debounce = new Map();
 

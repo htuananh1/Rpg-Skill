@@ -1,6 +1,6 @@
 import { ActionFormData } from "@minecraft/server-ui";
 import { Database } from "../database.js";
-import { SKILLS, getXpRequired } from "../config.js";
+import { getXpRequired } from "../config.js";
 import { Router } from "./router.js";
 import { UIComponents } from "./components.js";
 import { openQuestsMenu } from "./quests_ui.js";

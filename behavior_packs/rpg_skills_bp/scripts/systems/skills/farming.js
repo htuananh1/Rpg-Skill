@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import { Database } from "../../database.js";
 
 export function handleFarming(player) {

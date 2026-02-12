@@ -1,4 +1,3 @@
-import { world, system } from "@minecraft/server";
 import { Database } from "../database.js";
 import { CONFIG, getXpRequired } from "../config.js";
 import { StatsSystem } from "./stats.js";

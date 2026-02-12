@@ -1,4 +1,3 @@
-import { world } from "@minecraft/server";
 import { CONFIG, SKILLS } from "./config.js";
 
 const DB_KEY = "rpg_player_data";

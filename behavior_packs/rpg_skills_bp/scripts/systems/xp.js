@@ -60,4 +60,12 @@ export class XpSystem {
         data.mana = data.maxMana;
         StatsSystem.recalculateStats(player);
     }
+
+    static onPlayerLeave(playerId) {
+        for (const key of lastXpGain.keys()) {
+            if (key.startsWith(playerId + "_")) {
+                lastXpGain.delete(key);
+            }
+        }
+    }
 }

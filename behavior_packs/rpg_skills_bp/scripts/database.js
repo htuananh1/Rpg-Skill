@@ -8,7 +8,20 @@ export class Database {
         const data = player.getDynamicProperty(DB_KEY);
         if (data) {
             try {
-                return JSON.parse(data);
+                const parsed = JSON.parse(data);
+                // Data Migration / Initialization for new fields
+                if (parsed.version < 2) {
+                    parsed.coins = parsed.coins ?? 0;
+                    parsed.gems = parsed.gems ?? 0;
+                    parsed.quests = parsed.quests ?? { active: [], completed: [], daily: [], lastUpdated: 0 };
+                    parsed.stats = parsed.stats ?? {};
+                    parsed.lastSelectedAbility = parsed.lastSelectedAbility ?? null;
+                    parsed.settings.sounds = parsed.settings.sounds ?? true;
+                    parsed.settings.xpPopups = parsed.settings.xpPopups ?? true;
+                    parsed.version = 2;
+                    this.savePlayerData(player, parsed);
+                }
+                return parsed;
             } catch (e) {
                 console.error("Failed to parse player data: " + e);
             }
@@ -27,11 +40,29 @@ export class Database {
             globalXp: 0,
             mana: 100,
             maxMana: 100,
+            coins: 0,
+            gems: 0,
             skills: {},
             perks: {},
+            quests: {
+                active: [],
+                completed: [],
+                daily: [],
+                lastUpdated: 0
+            },
+            stats: {
+                bonusDamage: 0,
+                bonusDefense: 0,
+                critChance: 5,
+                lifesteal: 0,
+                miningFortune: 0
+            },
+            lastSelectedAbility: null,
             settings: {
                 particles: true,
-                notifications: true
+                notifications: true,
+                sounds: true,
+                xpPopups: true
             }
         };
 

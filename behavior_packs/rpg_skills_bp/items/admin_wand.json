@@ -2,17 +2,17 @@
     "format_version": "1.20.0",
     "minecraft:item": {
         "description": {
-            "identifier": "rpgskills:skill_tome",
+            "identifier": "rpgskills:admin_wand",
             "menu_category": {
                 "category": "equipment"
             }
         },
         "components": {
             "minecraft:display_name": {
-                "value": "item.rpgskills:skill_tome.name"
+                "value": "item.rpgskills:admin_wand.name"
             },
             "minecraft:icon": {
-                "texture": "rpg_skill_tome"
+                "texture": "rpg_admin_wand"
             },
             "minecraft:stack_size": 1,
             "minecraft:hand_equipped": true,

@@ -1,11 +1,14 @@
-item.rpg:skill_tome.name=§6Skill Tome§r
-rpg.menu.title=§l§0RPG SKILLS§r
-rpg.menu.overview=Overview
-rpg.menu.skills=Skills
-rpg.menu.perks=Perks
-rpg.menu.settings=Settings
-rpg.menu.close=Close
+## RPG Skills Addon Localization
 
+## Items
+item.rpgskills:skill_tome.name=§6Skill Tome§r
+item.rpgskills:menu_compass.name=§bAdventurer's Compass§r
+item.rpgskills:admin_wand.name=§cAdmin Wand§r
+item.rpgskills:quest_journal.name=§eQuest Journal§r
+item.rpgskills:coin_pouch.name=§6Coin Pouch§r
+item.rpgskills:crafting_guide.name=§2Crafting Guide Book§r
+
+## Skills
 rpg.skill.mining=Mining
 rpg.skill.woodcutting=Woodcutting
 rpg.skill.farming=Farming
@@ -16,16 +19,22 @@ rpg.skill.alchemy=Alchemy / Enchanting
 rpg.skill.agility=Agility
 rpg.skill.defense=Defense
 
-rpg.stat.level=Level: %s
-rpg.stat.xp=XP: %s / %s
-rpg.stat.mana=Mana: %s / %s
-rpg.stat.global_level=Global Level: %s
-
+## Notifications
 rpg.notification.level_up=§e[RPG]§a Your %s level is now %s!
 rpg.notification.global_level_up=§e[RPG]§6 Global Level Up! You are now level %s!
 rpg.notification.xp_gain=§7+%s %s XP
 
-rpg.ui.toggle_particles=Toggle Particles: %s
-rpg.ui.toggle_notifications=Toggle Notifications: %s
-rpg.ui.on=ON
-rpg.ui.off=OFF
+## UI Strings
+ui.main.title=RPG Hub
+ui.skills.title=Skills
+ui.stats.title=Player Stats
+ui.quests.title=Quests
+ui.shop.title=RPG Shop
+ui.settings.title=Settings
+ui.help.title=Help & Info
+ui.admin.title=Admin Dashboard
+ui.back=Back
+ui.close=Close
+ui.confirm=Confirm
+ui.insufficient_funds=Insufficient Coins!
+ui.no_permission=§cYou do not have permission to use this.§r

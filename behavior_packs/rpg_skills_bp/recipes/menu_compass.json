@@ -1,0 +1,28 @@
+{
+    "format_version": "1.20.0",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "rpgskills:menu_compass_recipe"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            " I ",
+            "ICI",
+            " I "
+        ],
+        "key": {
+            "I": {
+                "item": "minecraft:iron_ingot"
+            },
+            "C": {
+                "item": "minecraft:compass"
+            }
+        },
+        "result": {
+            "item": "rpgskills:menu_compass",
+            "count": 1
+        }
+    }
+}

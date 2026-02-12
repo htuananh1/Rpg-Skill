@@ -1,6 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { Database } from "../database.js";
 import { CONFIG, getXpRequired } from "../config.js";
+import { StatsSystem } from "./stats.js";
 
 const lastXpGain = new Map(); // player_id -> { skill: last_time }
 
@@ -49,6 +50,7 @@ export class XpSystem {
     static onSkillLevelUp(player, skill, newLevel) {
         player.sendMessage({ translate: "rpg.notification.level_up", with: ["rpg.skill." + skill, newLevel.toString()] });
         player.playSound("random.levelup");
+        StatsSystem.recalculateStats(player);
     }
 
     static onGlobalLevelUp(player, data, newLevel) {
@@ -56,5 +58,6 @@ export class XpSystem {
         player.playSound("random.toast");
         data.maxMana += 10;
         data.mana = data.maxMana;
+        StatsSystem.recalculateStats(player);
     }
 }

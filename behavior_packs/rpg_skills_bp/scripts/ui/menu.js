@@ -1,83 +1,112 @@
-import { ActionFormData, MessageFormData } from "@minecraft/server-ui";
+import { ActionFormData } from "@minecraft/server-ui";
 import { Database } from "../database.js";
 import { SKILLS, getXpRequired } from "../config.js";
+import { Router } from "./router.js";
+import { UIComponents } from "./components.js";
+import { openQuestsMenu } from "./quests_ui.js";
+import { openShopMenu } from "./shop_ui.js";
+import { openSettingsMenu } from "./settings_ui.js";
 
 export function openMainMenu(player) {
     const data = Database.getPlayerData(player);
+    Router.clearStack(player);
+
     const form = new ActionFormData()
-        .title({ translate: "rpg.menu.title" })
-        .body(`§6Global Level: §l${data.globalLevel}§r\n§bMana: §l${Math.floor(data.mana)}/${data.maxMana}§r`)
-        .button({ translate: "rpg.menu.skills" }, "textures/items/book_enchanted")
-        .button({ translate: "rpg.menu.perks" }, "textures/items/nether_star")
-        .button({ translate: "rpg.menu.settings" }, "textures/items/compass_item");
+        .title({ translate: "ui.main.title" })
+        .body("§6Global Level: §l" + data.globalLevel + "§r\n§eCoins: " + data.coins + "§r | §bMana: " + Math.floor(data.mana) + "/" + data.maxMana + "§r")
+        .button("Skills", "textures/items/book_enchanted")
+        .button("Quests", "textures/items/book_portfolio")
+        .button("Shop", "textures/items/emerald")
+        .button("Stats", "textures/items/iron_chestplate")
+        .button("Settings", "textures/items/compass_item")
+        .button("Help", "textures/items/paper");
 
     form.show(player).then((response) => {
         if (response.canceled) return;
-        if (response.selection === 0) openSkillsMenu(player);
-        if (response.selection === 1) openPerksMenu(player);
-        if (response.selection === 2) openSettingsMenu(player);
+        Router.push(player, openMainMenu);
+
+        switch (response.selection) {
+            case 0: openSkillsMenu(player); break;
+            case 1: openQuestsMenu(player); break;
+            case 2: openShopMenu(player); break;
+            case 3: openStatsMenu(player); break;
+            case 4: openSettingsMenu(player); break;
+            case 5: openHelpMenu(player); break;
+        }
     });
 }
 
 function openSkillsMenu(player) {
     const data = Database.getPlayerData(player);
     const form = new ActionFormData()
-        .title({ translate: "rpg.menu.skills" });
+        .title({ translate: "ui.skills.title" });
 
     const skillList = Object.keys(data.skills);
     for (const skill of skillList) {
         const sData = data.skills[skill];
         const nextXp = getXpRequired(sData.level);
-        form.button(`§0${skill.toUpperCase()}§r\nLevel: ${sData.level} (${Math.floor(sData.xp)}/${nextXp})`);
+        form.button("§0" + skill.toUpperCase() + "§r\nLvl: " + sData.level + " " + UIComponents.progressBar(sData.xp, nextXp, 5));
     }
 
-    form.button({ translate: "rpg.menu.close" });
+    form.button({ translate: "ui.back" });
 
     form.show(player).then((response) => {
         if (response.canceled || response.selection === skillList.length) {
-            openMainMenu(player);
+            Router.back(player);
             return;
         }
-        openMainMenu(player);
+        openSkillDetails(player, skillList[response.selection]);
     });
 }
 
-function openPerksMenu(player) {
+function openSkillDetails(player, skill) {
     const data = Database.getPlayerData(player);
-    const form = new ActionFormData()
-        .title({ translate: "rpg.menu.perks" })
-        .body("Perks unlock automatically at certain skill levels.");
+    const sData = data.skills[skill];
+    const nextXp = getXpRequired(sData.level);
 
-    form.button("Mining: Vein Sense (Lvl 20)");
-    form.button("Woodcutting: Tree Feller (Lvl 15)");
-    form.button("Farming: Growth Aura (Lvl 25)");
-    form.button("Combat: Lifesteal (Lvl 40)");
-    form.button("Agility: Fall Reduction (Lvl 20)");
-    form.button("Defense: Thorns (Lvl 30)");
-    form.button({ translate: "rpg.menu.close" });
+    const form = new ActionFormData()
+        .title(skill.toUpperCase())
+        .body("Level: " + sData.level + "\nXP: " + Math.floor(sData.xp) + "/" + nextXp + "\n\nPerks unlocked at various levels...")
+        .button({ translate: "ui.back" });
 
     form.show(player).then(() => {
-        openMainMenu(player);
+        openSkillsMenu(player);
     });
 }
 
-function openSettingsMenu(player) {
+function openStatsMenu(player) {
     const data = Database.getPlayerData(player);
-    const form = new MessageFormData()
-        .title({ translate: "rpg.menu.settings" })
-        .body("Customize your RPG experience.")
-        .button1(`Notifications: ${data.settings.notifications ? "ON" : "OFF"}`)
-        .button2(`Particles: ${data.settings.particles ? "ON" : "OFF"}`);
+    const stats = data.stats;
+    const body = "§lDerived Stats§r\n" +
+        "Bonus Damage: §a+" + stats.bonusDamage + "%§r\n" +
+        "Bonus Defense: §a+" + stats.bonusDefense + "%§r\n" +
+        "Crit Chance: §a" + stats.critChance + "%§r\n" +
+        "Lifesteal: §a" + stats.lifesteal + "%§r\n" +
+        "Mining Fortune: §a" + stats.miningFortune + "§r\n\n" +
+        "§7Breakdown: Base + Skill bonuses§r";
 
-    form.show(player).then((response) => {
-        if (response.canceled) {
-            openMainMenu(player);
-            return;
-        }
-        if (response.selection === 1) data.settings.notifications = !data.settings.notifications;
-        if (response.selection === 0) data.settings.particles = !data.settings.particles;
+    const form = new ActionFormData()
+        .title({ translate: "ui.stats.title" })
+        .body(body)
+        .button({ translate: "ui.back" });
 
-        Database.savePlayerData(player, data);
-        openSettingsMenu(player);
+    form.show(player).then(() => {
+        Router.back(player);
+    });
+}
+
+function openHelpMenu(player) {
+    const form = new ActionFormData()
+        .title({ translate: "ui.help.title" })
+        .body("Welcome to the RPG Skills system!\n\n" +
+            "1. Use the §lSkill Tome§r to manage skills.\n" +
+            "2. Use the §lCompass§r to access this menu.\n" +
+            "3. Complete §lQuests§r to earn Coins and XP.\n" +
+            "4. Spend Coins in the §lShop§r.\n\n" +
+            "Sneak + Use Tome to cast your last ability!")
+        .button({ translate: "ui.back" });
+
+    form.show(player).then(() => {
+        Router.back(player);
     });
 }

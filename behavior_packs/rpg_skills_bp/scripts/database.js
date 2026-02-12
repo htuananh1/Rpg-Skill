@@ -4,7 +4,12 @@ import { CONFIG, SKILLS } from "./config.js";
 const DB_KEY = "rpg_player_data";
 
 export class Database {
+    static cache = new Map();
     static getPlayerData(player) {
+        if (this.cache.has(player.id)) {
+            return this.cache.get(player.id);
+        }
+
         const data = player.getDynamicProperty(DB_KEY);
         if (data) {
             try {
@@ -21,16 +26,25 @@ export class Database {
                     parsed.version = 2;
                     this.savePlayerData(player, parsed);
                 }
+                this.cache.set(player.id, parsed);
                 return parsed;
             } catch (e) {
                 console.error("Failed to parse player data: " + e);
             }
         }
-        return this.initializePlayer(player);
+
+        const defaultData = this.initializePlayer(player);
+        this.cache.set(player.id, defaultData);
+        return defaultData;
     }
 
     static savePlayerData(player, data) {
+        this.cache.set(player.id, data);
         player.setDynamicProperty(DB_KEY, JSON.stringify(data));
+    }
+
+    static clearCache(playerId) {
+        this.cache.delete(playerId);
     }
 
     static initializePlayer(player) {

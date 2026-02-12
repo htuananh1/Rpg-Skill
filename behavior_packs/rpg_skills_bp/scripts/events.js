@@ -107,6 +107,7 @@ export function registerEvents() {
     // Cleanup on leave
     world.afterEvents.playerLeave.subscribe((event) => {
         XpSystem.onPlayerLeave(event.playerId);
+        Database.clearCache(event.playerId);
     });
 
     // Periodical Stats & Quests Check

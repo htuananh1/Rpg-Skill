@@ -1,3 +1,4 @@
+import { isLog } from "./utils.js";
 import { world, system } from "@minecraft/server";
 import { Database } from "../../database.js";
 import { SKILLS } from "../../config.js";
@@ -34,7 +35,7 @@ export function handleWoodcutting(player, block) {
                         if (visited.has(key)) continue;
 
                         const b = dim.getBlock(nextPos);
-                        if (b && (b.typeId.includes("log") || b.typeId.includes("wood"))) {
+                        if (b && (isLog(b.typeId))) {
                             visited.add(key);
                             queue.push(nextPos);
                             logsToBreak.push(nextPos);

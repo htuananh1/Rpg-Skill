@@ -1,3 +1,4 @@
+import { isGrowthAuraTarget } from "./utils.js";
 import { world, system } from "@minecraft/server";
 import { Database } from "../../database.js";
 
@@ -12,7 +13,7 @@ export function handleFarming(player) {
         for (let x = -3; x <= 3; x++) {
             for (let z = -3; z <= 3; z++) {
                 const b = dim.getBlock({ x: pos.x + x, y: pos.y, z: pos.z + z });
-                if (b && b.typeId.includes("wheat") || b.typeId.includes("carrot") || b.typeId.includes("potato")) {
+                if (b && isGrowthAuraTarget(b.typeId)) {
                     // Bone meal effect (randomly)
                     if (Math.random() < 0.1) {
                         dim.runCommandAsync(`setblock ${b.location.x} ${b.location.y} ${b.location.z} ${b.typeId} ${Math.min(7, b.permutation.getState("growth") + 1)}`);

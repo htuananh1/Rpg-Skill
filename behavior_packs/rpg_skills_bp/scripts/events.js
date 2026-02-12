@@ -1,3 +1,4 @@
+import { isCrop, isMiningBlock, isLog } from "./systems/skills/utils.js";
 import { world, system } from "@minecraft/server";
 import { XpSystem } from "./systems/xp.js";
 import { SKILLS, CONFIG } from "./config.js";
@@ -21,15 +22,15 @@ export function registerEvents() {
 
         QuestEngine.progressQuest(player, "break", blockId);
 
-        if (blockId.includes("ore") || blockId.includes("deepslate")) {
+        if (isMiningBlock(blockId)) {
             XpSystem.addXp(player, SKILLS.MINING, 10);
             Economy.addCoins(player, 2, "Mining");
             handleMining(player, event.block);
-        } else if (blockId.includes("log") || blockId.includes("wood")) {
+        } else if (isLog(blockId)) {
             XpSystem.addXp(player, SKILLS.WOODCUTTING, 5);
             Economy.addCoins(player, 1, "Woodcutting");
             handleWoodcutting(player, event.block);
-        } else if (blockId.includes("wheat") || blockId.includes("carrot") || blockId.includes("potato") || blockId.includes("beetroot") || blockId.includes("melon") || blockId.includes("pumpkin")) {
+        } else if (isCrop(blockId)) {
             XpSystem.addXp(player, SKILLS.FARMING, 2);
             Economy.addCoins(player, 1, "Farming");
         }

@@ -12,6 +12,6 @@ export function handleCombat(player, target) {
 
     // Perk: Lifesteal
     if (level >= 40 && Math.random() < 0.1) {
-        player.runCommandAsync("effect @s regeneration 1 1 true");
+        player.addEffect("regeneration", 20, { amplifier: 1, showParticles: false });
     }
 }

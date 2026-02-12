@@ -3,6 +3,7 @@ import { Database } from "../database.js";
 import { Router } from "./router.js";
 import { world } from "@minecraft/server";
 import { CONFIG, SKILLS } from "../config.js";
+import { XpSystem } from "../systems/xp.js";
 
 export function openAdminMenu(player) {
     if (!player.hasTag(CONFIG.ADMIN_TAG) && !player.isOp()) {
@@ -79,10 +80,7 @@ function openPlayerActions(admin, target) {
                 if (res.canceled) return;
                 const skill = skillList[res.formValues[0]];
                 const amt = parseInt(res.formValues[1]);
-                // Need to import XpSystem to add XP properly, or just edit data
-                const data = Database.getPlayerData(target);
-                data.skills[skill].xp += amt;
-                Database.savePlayerData(target, data);
+                XpSystem.addXp(target, skill, amt);
                 admin.sendMessage(`Gave ${amt} XP in ${skill} to ${target.name}`);
             });
         } else if (response.selection === 2) {
@@ -93,6 +91,21 @@ function openPlayerActions(admin, target) {
 }
 
 function openGlobalSettings(player) {
-    player.sendMessage("Global Settings not yet implemented in this preview.");
-    openAdminMenu(player);
+    const isDebug = world.getDynamicProperty("rpg_debug_mode") || false;
+    const form = new ActionFormData()
+        .title("Global Settings")
+        .button(`Debug Mode: ${isDebug ? "§aON" : "§cOFF"}`)
+        .button({ translate: "ui.back" });
+
+    form.show(player).then((response) => {
+        if (response.canceled || response.selection === 1) {
+             openAdminMenu(player);
+             return;
+        }
+        if (response.selection === 0) {
+            world.setDynamicProperty("rpg_debug_mode", !isDebug);
+            player.sendMessage(`Debug Mode set to: ${!isDebug}`);
+            openGlobalSettings(player);
+        }
+    });
 }

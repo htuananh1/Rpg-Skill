@@ -77,7 +77,7 @@ function confirmPurchase(player, item) {
         .button2({ translate: "ui.back" });
 
     form.show(player).then((response) => {
-        if (response.canceled || response.selection === 0) {
+        if (response.canceled || response.selection === 1) {
             openShopMenu(player);
             return;
         }

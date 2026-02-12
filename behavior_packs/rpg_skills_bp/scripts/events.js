@@ -104,6 +104,11 @@ export function registerEvents() {
         }
     });
 
+    // Cleanup on leave
+    world.afterEvents.playerLeave.subscribe((event) => {
+        XpSystem.onPlayerLeave(event.playerId);
+    });
+
     // Periodical Stats & Quests Check
     system.runInterval(() => {
         for (const player of world.getAllPlayers()) {

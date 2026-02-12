@@ -2,6 +2,7 @@ import { world, system } from "@minecraft/server";
 import { Database } from "../../database.js";
 import { SKILLS } from "../../config.js";
 import { XpSystem } from "../xp.js";
+import { BlockTracker } from "../block_tracker.js";
 
 export function handleWoodcutting(player, block) {
     const data = Database.getPlayerData(player);
@@ -47,19 +48,29 @@ export function handleWoodcutting(player, block) {
         // Break logs over time to reduce lag
         if (logsToBreak.length > 0) {
             let index = 0;
+            let validLogsCount = 0;
             const breakLoop = () => {
                 if (!player.isValid()) return;
 
                 if (index >= logsToBreak.length) {
                     // Award XP for the extra logs
                     // 5 XP per log (matching the base amount in events.js)
-                    XpSystem.addXp(player, SKILLS.WOODCUTTING, logsToBreak.length * 5);
+                    if (validLogsCount > 0) {
+                        XpSystem.addXp(player, SKILLS.WOODCUTTING, validLogsCount * 5);
+                    }
                     return;
                 }
 
                 // Break up to 3 blocks per tick
                 for (let i = 0; i < 3 && index < logsToBreak.length; i++) {
                      const p = logsToBreak[index++];
+
+                     // Check if this specific log was player-placed
+                     const isPlaced = BlockTracker.removeBlock(p, player.dimension.id);
+                     if (!isPlaced) {
+                         validLogsCount++;
+                     }
+
                      // Use runCommandAsync to drop items
                      dim.runCommandAsync(`setblock ${p.x} ${p.y} ${p.z} air destroy`);
                 }

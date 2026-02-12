@@ -12,12 +12,31 @@ import { handleMining } from "./systems/skills/mining.js";
 import { handleWoodcutting } from "./systems/skills/woodcutting.js";
 import { handleFarming } from "./systems/skills/farming.js";
 import { handleCombat } from "./systems/skills/combat.js";
+import { BlockTracker } from "./systems/block_tracker.js";
 
 export function registerEvents() {
     // Block Breaking
+        // Block Placement Tracking (Anti-Exploit)
+    world.afterEvents.playerPlaceBlock.subscribe((event) => {
+        const { block } = event;
+        const blockId = block.typeId;
+
+        // Track blocks that give XP to prevent place-break farming
+        if (blockId.includes("ore") || blockId.includes("deepslate") ||
+            blockId.includes("log") || blockId.includes("wood") ||
+            blockId.includes("melon") || blockId.includes("pumpkin")) {
+            BlockTracker.addBlock(block.location, block.dimension.id);
+        }
+    });
+
+    // Block Breaking
     world.afterEvents.playerBreakBlock.subscribe((event) => {
-        const { player, brokenBlockPermutation } = event;
+        const { player, brokenBlockPermutation, block } = event;
         const blockId = brokenBlockPermutation.type.id;
+
+        // Check if block was player-placed
+        const isPlayerPlaced = BlockTracker.removeBlock(block.location, player.dimension.id);
+        if (isPlayerPlaced) return;
 
         QuestEngine.progressQuest(player, "break", blockId);
 
@@ -30,8 +49,23 @@ export function registerEvents() {
             Economy.addCoins(player, 1, "Woodcutting");
             handleWoodcutting(player, event.block);
         } else if (blockId.includes("wheat") || blockId.includes("carrot") || blockId.includes("potato") || blockId.includes("beetroot") || blockId.includes("melon") || blockId.includes("pumpkin")) {
-            XpSystem.addXp(player, SKILLS.FARMING, 2);
-            Economy.addCoins(player, 1, "Farming");
+            // Special check for crops: must be fully grown
+            if (blockId.includes("melon") || blockId.includes("pumpkin")) {
+                XpSystem.addXp(player, SKILLS.FARMING, 2);
+                Economy.addCoins(player, 1, "Farming");
+            } else {
+                try {
+                    const growth = brokenBlockPermutation.getState("growth");
+                    const isFullyGrown = (blockId.includes("beetroot") ? growth === 3 : growth === 7);
+
+                    if (isFullyGrown) {
+                        XpSystem.addXp(player, SKILLS.FARMING, 2);
+                        Economy.addCoins(player, 1, "Farming");
+                    }
+                } catch (e) {
+                    // In case growth state is missing
+                }
+            }
         }
     });
 

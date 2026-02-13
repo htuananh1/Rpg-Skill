@@ -1,0 +1,192 @@
+# RPG Skills Plugin Configuration
+# ================================
+
+# General Settings
+general:
+  # Maximum player level
+  max-level: 100
+  # Base XP required for level 2 (scales exponentially)
+  base-xp-per-level: 100
+  # XP scaling factor per level (xp_needed = base * factor^(level-1))
+  xp-scaling-factor: 1.15
+  # Skill points earned per level up
+  skill-points-per-level: 1
+  # Starting skill points for new players
+  starting-skill-points: 0
+
+# Mana Settings
+mana:
+  # Base maximum mana
+  base-max-mana: 100
+  # Mana per player level bonus
+  mana-per-level: 5
+  # Mana regeneration per second
+  regen-per-second: 2
+  # Mana regeneration tick interval (in server ticks, 20 = 1 second)
+  regen-interval-ticks: 20
+
+# Skill Definitions
+skills:
+  # === COMBAT SKILLS ===
+  sword-mastery:
+    display-name: "Sword Mastery"
+    category: COMBAT
+    description: "Increases melee damage with swords"
+    max-level: 10
+    icon: DIAMOND_SWORD
+    # Damage bonus per skill level (percentage)
+    damage-bonus-per-level: 10
+    # XP cost to unlock
+    skill-point-cost: 1
+
+  archery:
+    display-name: "Archery"
+    category: COMBAT
+    description: "Increases arrow damage and accuracy"
+    max-level: 10
+    icon: BOW
+    damage-bonus-per-level: 8
+    skill-point-cost: 1
+
+  critical-strike:
+    display-name: "Critical Strike"
+    category: COMBAT
+    description: "Chance to deal double damage on hit"
+    max-level: 10
+    icon: IRON_AXE
+    # Critical chance per level (percentage)
+    crit-chance-per-level: 5
+    # Critical damage multiplier
+    crit-damage-multiplier: 2.0
+    skill-point-cost: 1
+
+  # === MAGIC SKILLS ===
+  fireball:
+    display-name: "Fireball"
+    category: MAGIC
+    description: "Launch a fireball that deals damage"
+    max-level: 10
+    icon: FIRE_CHARGE
+    # Base damage
+    base-damage: 4.0
+    # Damage per skill level
+    damage-per-level: 1.5
+    # Mana cost
+    mana-cost: 20
+    # Cooldown in seconds
+    cooldown: 5
+    skill-point-cost: 2
+
+  heal:
+    display-name: "Heal"
+    category: MAGIC
+    description: "Restore health to yourself"
+    max-level: 10
+    icon: GOLDEN_APPLE
+    # Base heal amount (half hearts)
+    base-heal: 4.0
+    # Heal per skill level
+    heal-per-level: 1.0
+    mana-cost: 25
+    cooldown: 10
+    skill-point-cost: 2
+
+  lightning:
+    display-name: "Lightning"
+    category: MAGIC
+    description: "Strike lightning at your target location"
+    max-level: 10
+    icon: TRIDENT
+    base-damage: 6.0
+    damage-per-level: 2.0
+    mana-cost: 35
+    cooldown: 15
+    # Maximum range in blocks
+    max-range: 30
+    skill-point-cost: 3
+
+  # === SURVIVAL SKILLS ===
+  mining:
+    display-name: "Mining"
+    category: SURVIVAL
+    description: "Chance for double drops when mining ores"
+    max-level: 10
+    icon: DIAMOND_PICKAXE
+    # Double drop chance per level (percentage)
+    double-drop-chance-per-level: 5
+    skill-point-cost: 1
+
+  farming:
+    display-name: "Farming"
+    category: SURVIVAL
+    description: "Chance for extra crops when harvesting"
+    max-level: 10
+    icon: DIAMOND_HOE
+    extra-drop-chance-per-level: 5
+    skill-point-cost: 1
+
+  fishing:
+    display-name: "Fishing"
+    category: SURVIVAL
+    description: "Better loot and faster catches while fishing"
+    max-level: 10
+    icon: FISHING_ROD
+    # Reduced wait time per level (percentage)
+    speed-bonus-per-level: 5
+    # Treasure chance bonus per level (percentage)
+    treasure-chance-per-level: 3
+    skill-point-cost: 1
+
+# XP Gain Rates
+xp-rates:
+  # Combat XP
+  kill-hostile-mob: 15
+  kill-player: 50
+  melee-hit: 2
+  arrow-hit: 3
+
+  # Mining XP
+  mine-coal: 5
+  mine-iron: 8
+  mine-gold: 12
+  mine-diamond: 25
+  mine-emerald: 30
+  mine-lapis: 10
+  mine-redstone: 8
+  mine-copper: 6
+  mine-nether-quartz: 7
+  mine-ancient-debris: 50
+  mine-stone: 1
+
+  # Farming XP
+  harvest-wheat: 5
+  harvest-carrot: 5
+  harvest-potato: 5
+  harvest-beetroot: 5
+  harvest-nether-wart: 8
+  harvest-melon: 4
+  harvest-pumpkin: 4
+  harvest-sugar-cane: 3
+  harvest-cocoa: 6
+
+  # Fishing XP
+  catch-fish: 10
+  catch-treasure: 25
+  catch-junk: 3
+
+# Messages
+messages:
+  prefix: "&6[RPGSkills] &r"
+  level-up: "&aYou leveled up to level &e{level}&a! You earned &e{points} skill point(s)&a."
+  skill-unlocked: "&aYou unlocked &e{skill}&a!"
+  skill-leveled: "&aYou leveled &e{skill}&a to level &e{level}&a!"
+  not-enough-points: "&cYou don't have enough skill points!"
+  skill-max-level: "&cThis skill is already at max level!"
+  not-enough-mana: "&cNot enough mana! Need &e{cost}&c, have &e{current}&c."
+  skill-on-cooldown: "&cThis skill is on cooldown! &e{remaining}s&c remaining."
+  skill-activated: "&aActivated &e{skill}&a!"
+  no-permission: "&cYou don't have permission to do that!"
+  player-not-found: "&cPlayer not found!"
+  skill-not-found: "&cSkill not found!"
+  config-reloaded: "&aConfiguration reloaded!"
+  data-reset: "&aPlayer data for &e{player}&a has been reset."

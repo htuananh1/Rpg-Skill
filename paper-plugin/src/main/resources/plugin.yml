@@ -1,0 +1,36 @@
+name: RPGSkills
+version: '${project.version}'
+main: com.rpgskills.RPGSkillsPlugin
+api-version: '1.20'
+description: An RPG Skill system with combat, magic, and survival skills
+author: RPGSkills Team
+
+commands:
+  skills:
+    description: Open the skills GUI
+    usage: /<command>
+    permission: rpgskills.use
+  skill:
+    description: Skill management commands
+    usage: /<command> <info|activate|admin> [args]
+    permission: rpgskills.use
+
+permissions:
+  rpgskills.use:
+    description: Allows players to use the skill system
+    default: true
+  rpgskills.admin:
+    description: Allows admin commands for the skill system
+    default: op
+  rpgskills.admin.reload:
+    description: Allows reloading the plugin config
+    default: op
+  rpgskills.admin.reset:
+    description: Allows resetting player skill data
+    default: op
+  rpgskills.admin.setlevel:
+    description: Allows setting player skill levels
+    default: op
+  rpgskills.admin.givexp:
+    description: Allows giving XP to players
+    default: op

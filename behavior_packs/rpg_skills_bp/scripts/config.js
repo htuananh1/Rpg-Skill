@@ -36,12 +36,21 @@ export const SHOP_ITEMS = [
     { id: "minecraft:iron_chestplate", price: 200, category: "Armor", req: { skill: SKILLS.DEFENSE, level: 10 } },
     { id: "minecraft:diamond_chestplate", price: 2000, category: "Armor", req: { skill: SKILLS.DEFENSE, level: 30 } },
     { id: "minecraft:enchanted_book", price: 500, category: "Utilities" },
-    { id: "minecraft:golden_apple", price: 300, category: "Utilities" }
+    { id: "minecraft:golden_apple", price: 300, category: "Utilities" },
+    { id: "minecraft:bow", price: 200, category: "Weapons", req: { skill: SKILLS.ARCHERY, level: 10 } },
+    { id: "minecraft:enchanting_table", price: 800, category: "Utilities", req: { skill: SKILLS.ALCHEMY, level: 15 } },
+    { id: "minecraft:fishing_rod", price: 150, category: "Tools", req: { skill: SKILLS.FISHING, level: 5 } },
+    { id: "minecraft:potion", price: 400, category: "Potions", req: { skill: SKILLS.ALCHEMY, level: 10 } },
+    { id: "minecraft:brewing_stand", price: 300, category: "Utilities", req: { skill: SKILLS.ALCHEMY, level: 5 } }
 ];
 
 export const QUEST_TEMPLATES = [
     { id: "mine_stone", name: "Stone Breaker", description: "Mine 50 stone blocks.", type: "break", target: "minecraft:stone", amount: 50, reward: { coins: 50, xp: { [SKILLS.MINING]: 100 } } },
     { id: "kill_zombies", name: "Zombie Hunter", description: "Kill 10 zombies.", type: "kill", target: "minecraft:zombie", amount: 10, reward: { coins: 100, xp: { [SKILLS.COMBAT]: 200 } } },
     { id: "wood_gatherer", name: "Wood Gatherer", description: "Chop 32 logs.", type: "break", target: "log", amount: 32, reward: { coins: 40, xp: { [SKILLS.WOODCUTTING]: 80 } } },
-    { id: "fish_catcher", name: "Fisherman's Joy", description: "Catch 5 fish.", type: "fish", amount: 5, reward: { coins: 60, xp: { [SKILLS.FISHING]: 120 } } }
+    { id: "fish_catcher", name: "Fisherman's Joy", description: "Catch 5 fish.", type: "fish", amount: 5, reward: { coins: 60, xp: { [SKILLS.FISHING]: 120 } } },
+    { id: "archery_target", name: "Marksman", description: "Kill 5 mobs with a bow.", type: "kill", target: "mob", amount: 5, reward: { coins: 80, xp: { [SKILLS.ARCHERY]: 150 } } },
+    { id: "alchemy_beginner", name: "Potion Maker", description: "Brew 3 potions.", type: "craft", target: "potion", amount: 3, reward: { coins: 70, xp: { [SKILLS.ALCHEMY]: 140 } } },
+    { id: "farm_crops", name: "Harvester", description: "Harvest 20 crops.", type: "break", target: "crop", amount: 20, reward: { coins: 60, xp: { [SKILLS.FARMING]: 120 } } },
+    { id: "agility_test", name: "Speed Runner", description: "Run 1000 blocks.", type: "run", target: "distance", amount: 1000, reward: { coins: 90, xp: { [SKILLS.AGILITY]: 180 } } }
 ];

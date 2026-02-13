@@ -12,6 +12,11 @@ import { handleMining } from "./systems/skills/mining.js";
 import { handleWoodcutting } from "./systems/skills/woodcutting.js";
 import { handleFarming } from "./systems/skills/farming.js";
 import { handleCombat } from "./systems/skills/combat.js";
+import { handleArchery } from "./systems/skills/archery.js";
+import { handleFishing } from "./systems/skills/fishing.js";
+import { handleAlchemy } from "./systems/skills/alchemy.js";
+import { handleAgility } from "./systems/skills/agility.js";
+import { handleDefense } from "./systems/skills/defense.js";
 import { BlockTracker } from "./systems/block_tracker.js";
 
 export function registerEvents() {
@@ -147,6 +152,11 @@ export function registerEvents() {
     system.runInterval(() => {
         for (const player of world.getAllPlayers()) {
             handleFarming(player);
+            handleAgility(player);
+            handleArchery(player);
+            handleFishing(player);
+            handleAlchemy(player);
+            handleDefense(player);
             // Optionally update derived stats if buffs changed
         }
     }, 100);

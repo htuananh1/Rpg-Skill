@@ -45,7 +45,8 @@ function openSkillsMenu(player) {
     for (const skill of skillList) {
         const sData = data.skills[skill];
         const nextXp = getXpRequired(sData.level);
-        form.button("§0" + skill.toUpperCase() + "§r\nLvl: " + sData.level + " " + UIComponents.progressBar(sData.xp, nextXp, 5));
+        const localizedName = { translate: "rpg.skill." + skill };
+        form.button(localizedName + "\nLvl: " + sData.level + " " + UIComponents.progressBar(sData.xp, nextXp, 5));
     }
 
     form.button({ translate: "ui.back" });
@@ -65,7 +66,7 @@ function openSkillDetails(player, skill) {
     const nextXp = getXpRequired(sData.level);
 
     const form = new ActionFormData()
-        .title(skill.toUpperCase())
+        .title({ translate: "rpg.skill." + skill })
         .body("Level: " + sData.level + "\nXP: " + Math.floor(sData.xp) + "/" + nextXp + "\n\nPerks unlocked at various levels...")
         .button({ translate: "ui.back" });
 

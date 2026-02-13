@@ -1,0 +1,40 @@
+## RPG Skills Addon Localization
+
+## Items
+item.rpgskills:skill_tome.name=§6Sách Kỹ Năng§r
+item.rpgskills:menu_compass.name=§bVũ Độ Bảo Tộc§r
+item.rpgskills:admin_wand.name=§cThước Quyền Quản Trị§r
+item.rpgskills:quest_journal.name=§eNhật Ký Nhiệm Vụ§r
+item.rpgskills:coin_pouch.name=§6Túi Xu§r
+item.rpgskills:crafting_guide.name=§2Sách Hướng Dẫn Thủ Công§r
+
+## Skills
+rpg.skill.mining=Khoáng Sản
+rpg.skill.woodcutting=Đốn Gỗ
+rpg.skill.farming=Trồng Trọt
+rpg.skill.combat=Trận Đấu
+rpg.skill.archery=Mục Tiêu
+rpg.skill.fishing=Câu Cá
+rpg.skill.alchemy=Hoá Học
+rpg.skill.agility=Độ Nhạy
+rpg.skill.defense=Phòng Thủ
+
+## Notifications
+rpg.notification.level_up=§e[RPG]§a Cấp độ %s của bạn hiện tại là %s!
+rpg.notification.global_level_up=§e[RPG]§6 Cấp độ Toàn Cục Nâng Cao! Bạn hiện tại là cấp %s!
+rpg.notification.xp_gain=§7+%s XP %s
+
+## UI Strings
+ui.main.title=Trung Tâm RPG
+ui.skills.title=Kỹ Năng
+ui.stats.title=Thống Kê Người Chơi
+ui.quests.title=Nhiệm Vụ
+ui.shop.title=Cửa Hàng RPG
+ui.settings.title=Cài Đặt
+ui.help.title=Trợ Giúp & Thông Tin
+ui.admin.title=Bảng Điều Khiển Quản Trị
+ui.back=Quay Lại
+ui.close=Đóng
+ui.confirm=Xác Nhận
+ui.insufficient_funds=Không đủ xu!
+ui.no_permission=§cBạn không có quyền sử dụng tính năng này.§r

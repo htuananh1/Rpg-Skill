@@ -6,7 +6,7 @@ import { CONFIG, SKILLS } from "../config.js";
 import { XpSystem } from "../systems/xp.js";
 
 export function openAdminMenu(player) {
-    if (!player.hasTag(CONFIG.ADMIN_TAG) && !player.isOp()) {
+    if (!player.hasTag(CONFIG.ADMIN_TAG)) {
         player.sendMessage({ translate: "ui.no_permission" });
         return;
     }

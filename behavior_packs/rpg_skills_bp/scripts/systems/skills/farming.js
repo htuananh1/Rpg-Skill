@@ -12,10 +12,13 @@ export function handleFarming(player) {
         for (let x = -3; x <= 3; x++) {
             for (let z = -3; z <= 3; z++) {
                 const b = dim.getBlock({ x: pos.x + x, y: pos.y, z: pos.z + z });
-                if (b && b.typeId.includes("wheat") || b.typeId.includes("carrot") || b.typeId.includes("potato")) {
+                if (b && (b.typeId.includes("wheat") || b.typeId.includes("carrot") || b.typeId.includes("potato"))) {
                     // Bone meal effect (randomly)
                     if (Math.random() < 0.1) {
-                        dim.runCommandAsync(`setblock ${b.location.x} ${b.location.y} ${b.location.z} ${b.typeId} ${Math.min(7, b.permutation.getState("growth") + 1)}`);
+                        const currentGrowth = b.permutation.getState("growth") ?? 0;
+                        const newGrowth = Math.min(7, currentGrowth + 1);
+                        // FIX: Use Script API setPermutation instead of invalid setblock command syntax
+                        b.setPermutation(b.permutation.withState("growth", newGrowth));
                     }
                 }
             }

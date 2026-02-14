@@ -90,10 +90,10 @@ export function registerEvents() {
         }
     });
 
-    // Fishing
-    world.afterEvents.playerFish.subscribe((event) => {
-        const { player } = event;
-        if (event.itemStack) {
+    // Fishing — FIX: playerFish event does not exist; use itemUse with fishing rod detection
+    world.afterEvents.itemUse.subscribe((event) => {
+        const player = event.source;
+        if (event.itemStack && event.itemStack.typeId === "minecraft:fishing_rod") {
             XpSystem.addXp(player, SKILLS.FISHING, 20);
             QuestEngine.progressQuest(player, "fish", "any");
             Economy.addCoins(player, 10, "Fishing");

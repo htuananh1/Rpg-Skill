@@ -45,8 +45,8 @@ function openSkillsMenu(player) {
     for (const skill of skillList) {
         const sData = data.skills[skill];
         const nextXp = getXpRequired(sData.level);
-        const localizedName = { translate: "rpg.skill." + skill };
-        form.button(localizedName + "\nLvl: " + sData.level + " " + UIComponents.progressBar(sData.xp, nextXp, 5));
+        // FIX: RawMessage cannot be concatenated with strings; use rawtext array for proper localization
+        form.button({ rawtext: [{ translate: "rpg.skill." + skill }, { text: "\nLvl: " + sData.level + " " + UIComponents.progressBar(sData.xp, nextXp, 5) }] });
     }
 
     form.button({ translate: "ui.back" });

@@ -42,7 +42,7 @@ export class XpSystem {
         Database.savePlayerData(player, data);
 
         if (data.settings.notifications && !leveledUp) {
-            player.onScreenDisplay.setActionBar({ translate: "rpg.notification.xp_gain", with: [amount.toString(), "rpg.skill." + skill] });
+            player.onScreenDisplay.setActionBar({ translate: "rpg.notification.xp_gain", with: { rawtext: [{ text: amount.toString() }, { translate: "rpg.skill." + skill }] } });
         }
     }
 

@@ -23,7 +23,9 @@ export function handleMining(player, block) {
                     for (let z = -3; z <= 3; z++) {
                         const b = dim.getBlock({ x: pos.x + x, y: pos.y + y, z: pos.z + z });
                         if (b && b.typeId.includes("ore")) {
-                             dim.spawnParticle("minecraft:villager_happy", { x: b.location.x + 0.5, y: b.location.y + 0.5, z: b.location.z + 0.5 });
+                             try {
+                                 dim.spawnParticle("minecraft:villager_happy", { x: b.location.x + 0.5, y: b.location.y + 0.5, z: b.location.z + 0.5 });
+                             } catch (e) { /* chunk may have unloaded */ }
                         }
                     }
                 }

@@ -72,7 +72,7 @@ export function handleWoodcutting(player, block) {
                      }
 
                      // Use runCommandAsync to drop items
-                     dim.runCommandAsync(`setblock ${p.x} ${p.y} ${p.z} air destroy`);
+                     dim.runCommandAsync(`setblock ${Math.floor(p.x)} ${Math.floor(p.y)} ${Math.floor(p.z)} air destroy`);
                 }
 
                 system.run(breakLoop);
